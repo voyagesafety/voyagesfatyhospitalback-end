@@ -11,7 +11,7 @@ const cryptr = new Cryptr('voyageSafetySecretKey');
 router.post("/Login", async (req, res) => {
     const { MedUsername, MedPassword } = req.body;
   
-    let result = await user.findOne({ where: { MedUsername: MedUsername} });
+    let result = await medpersonel.findOne({ where: { MedUsername: MedUsername} });
     if (result != null) {
       if (result.Verify == true) {
         if (bcrypt.compareSync(MedPassword, result.MedPassword)) {
