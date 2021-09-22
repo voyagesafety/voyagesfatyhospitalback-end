@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const sequelize = require("../db_instance");
 
 const medpersonel = sequelize.define(
-    "Medpersonel",
+    "MedPersonel",
     {
         // attributes
         MedId: {
@@ -23,7 +23,7 @@ const medpersonel = sequelize.define(
     );
     
     (async () => {
-      await user.sync({ force: false });
+      await medpersonel.sync({ force: false });
     })();
     
     module.exports = medpersonel;
