@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const formidable = require("formidable")
 const { RegistrarWeb3Provider } = require("../Connection");
 const privateKey = '0015de89ee814871af24848a812f3c20d694d969c7919d36ce07f7126eb02c88';
 
@@ -10,84 +11,88 @@ router.get("/acc", async (req, res) => {
 });
 
 router.post("/person/add1", async (req, res) => {
-  const {
+  var form = new formidable.IncomingForm();
+  form.parse(req ,async (err, field) =>{
+    const {
     citizenIdInput,
     firstNameInput,
     lastNameInput,
     genderInput,
     vaccineName1,
     hospitalName1,
-  } = req.body;
-
-  if (
-    !citizenIdInput ||
-    !firstNameInput ||
-    !lastNameInput ||
-    !genderInput ||
-    !vaccineName1 ||
-    !hospitalName1
-  ) {
-    return res.json({
-      success: false,
-      error: "Please fill the form.",
-    });
-  }
-  var nowDate = new Date();
-  var dateGetVaccine1 =
-    nowDate.getFullYear() +
-    "/" +
-    (nowDate.getMonth() + 1) +
-    "/" +
-    nowDate.getDate();
-  var vaccineName2 = "";
-  var dateGetVaccine2 = "";
-  var hospitalName2 = "";
-  var registrarProvider = RegistrarWeb3Provider(privateKey);
-  var account = await registrarProvider.web3.eth.getAccounts();
-  //var balance = await registrarProvider.web3.eth.getBalance(account[0]);
-  //var firstNoune = registrarProvider.web3.eth.getTransactionCount(account[0]);
-  //console.log("Account : ", account);
-  //console.log("Nounce : ", await firstNoune);
-  try {
-    console.log("1");
-    return await registrarProvider.transcript.methods
-      .addVaccine(
-        citizenIdInput,
-        firstNameInput,
-        lastNameInput,
-        genderInput,
-        vaccineName1,
-        dateGetVaccine1,
-        hospitalName1,
-        vaccineName2,
-        dateGetVaccine2,
-        hospitalName2
-      )
-      .send({ from: account[0] })
-      .then((receipt) => {
-        console.log("Result : ", receipt);
-        console.log("Receipt : ", receipt.status);
-        if (receipt.status) {
-          status = true;
-          //hash = transactionHash;
-        } else {
-          status = true;
-          //hash = transactionHash;
-        }
-        return { status: status };
-        // if (!err) {
-        //     status = true;
-        //     hash = transactionHash;
-
-        // } else {
-        //     status = false;
-        //     hash = "No Transaction Hash"
-        // }
-        // //console.log("Status : "+status)
+  } = field;
+    if (
+      !citizenIdInput ||
+      !firstNameInput ||
+      !lastNameInput ||
+      !genderInput ||
+      !vaccineName1 ||
+      !hospitalName1
+    ) {
+      return res.json({
+        success: false,
+        error: "Please fill the form.",
       });
-  } catch (err) {
-    console.error("" + err);
-  }
+    }
+    var nowDate = new Date();
+    var dateGetVaccine1 =
+      nowDate.getFullYear() +
+      "/" +
+      (nowDate.getMonth() + 1) +
+      "/" +
+      nowDate.getDate();
+    var vaccineName2 = "";
+    var dateGetVaccine2 = "";
+    var hospitalName2 = "";
+    var registrarProvider = RegistrarWeb3Provider(privateKey);
+    var account = await registrarProvider.web3.eth.getAccounts();
+    //var balance = await registrarProvider.web3.eth.getBalance(account[0]);
+    //var firstNoune = registrarProvider.web3.eth.getTransactionCount(account[0]);
+    //console.log("Account : ", account);
+    //console.log("Nounce : ", await firstNoune);
+    try {
+      console.log("1");
+      return await registrarProvider.transcript.methods
+        .addVaccine(
+          citizenIdInput,
+          firstNameInput,
+          lastNameInput,
+          genderInput,
+          vaccineName1,
+          dateGetVaccine1,
+          hospitalName1,
+          vaccineName2,
+          dateGetVaccine2,
+          hospitalName2
+        )
+        .send({ from: account[0] })
+        .then((receipt) => {
+          console.log("Result : ", receipt);
+          console.log("Receipt : ", receipt.status);
+          if (receipt.status) {
+            status = true;
+            //hash = transactionHash;
+          } else {
+            status = true;
+            //hash = transactionHash;
+          }
+          return { status: status };
+          // if (!err) {
+          //     status = true;
+          //     hash = transactionHash;
+  
+          // } else {
+          //     status = false;
+          //     hash = "No Transaction Hash"
+          // }
+          // //console.log("Status : "+status)
+        });
+    } catch (err) {
+      console.error("" + err);
+    }
+  })
+
+  
 });
 
 router.post("/person/add2", async (req, res) => {
