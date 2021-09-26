@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 app.get('/', (req, res, next) => {
-   response.send('Hello! Welcome to Application!');
+   res.send('Hello! Welcome to Application!');
 });
 
 app.use("/authen/", require("./routes/authen"));
