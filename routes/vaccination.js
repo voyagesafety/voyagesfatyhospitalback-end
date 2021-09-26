@@ -31,7 +31,7 @@ router.post("/person/addVaccine", async (req, res)=>{
     var account = await registrarProvider.web3.eth.getAccounts();
     try{
       console.log("start")
-    return await registrarProvider.transcript.methods.addVaccine(
+    return await registrarProvider.vaccination.methods.addVaccine(
       citizenIdInput,
       firstNameInput,
       lastNameInput,
@@ -69,7 +69,7 @@ router.post("/person/addVaccine", async (req, res)=>{
       hospitalName
     } = field;
     var registrarProvider = RegistrarWeb3Provider(privateKey);
-    var addressData = await registrarProvider.transcript.methods.getVaccine(citizenIdInput).call();
+    var addressData = await registrarProvider.vaccination.methods.getVaccine(citizenIdInput).call();
     var vaccineName1 = addressData.vaccineName1;
     var dateGetVaccine1 = addressData.dateGetVaccine1;
     var hospitalName1 = addressData.hospitalName1;
@@ -77,7 +77,7 @@ router.post("/person/addVaccine", async (req, res)=>{
     var account = await registrarProvider.web3.eth.getAccounts();
     try{
       console.log("start");
-    return await registrarProvider.transcript.methods
+    return await registrarProvider.vaccination.methods
     .addVaccine(
       citizenIdInput,
       firstNameInput,
@@ -114,7 +114,7 @@ router.post("/person/addVaccine", async (req, res)=>{
 router.post("/vaccine/:citizenid", async (req, res) => {
   const { citizenid } = req.params;
   var registrarProvider = RegistrarWeb3Provider(privateKey);
-  var addressData = await registrarProvider.transcript.methods
+  var addressData = await registrarProvider.vaccination.methods
     .getVaccine(citizenid)
     .call((err, res) => {
       if (!err) {

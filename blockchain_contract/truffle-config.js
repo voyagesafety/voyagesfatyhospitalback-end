@@ -48,7 +48,7 @@ module.exports = {
     //  network_id: "*",       // Any network (default: none)
     // },
     kovan: {
-      provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/ae0c4db814424f40a171abaad255481c`),
+      provider: () => new HDWalletProvider(mnemonic, `wss://rinkeby.infura.io/ws/v3/ae0c4db814424f40a171abaad255481c`),
       network_id: '*',   // Ropsten's id
       // gas: 5500000,        // Ropsten has a lower block limit than mainnet
       // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
