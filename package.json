@@ -11,7 +11,8 @@
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.12",
     "sequelize": "^6.6.5",
-    "web3": "^1.5.2"
+    "web3": "^1.5.2",
+    "pg": "^8.6.0"
   },
   "name": "voyagesfatyhospitalback-end",
   "description": "Back-end for VoyageSafety hospital",
