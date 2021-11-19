@@ -113,19 +113,28 @@ router.post("/person/addVaccine", async (req, res)=>{
 
 router.post("/vaccine/:citizenid", async (req, res) => {
   const { citizenid } = req.params;
-  var registrarProvider = RegistrarWeb3Provider(privateKey);
-  var addressData = await registrarProvider.vaccination.methods
-    .getVaccine(citizenid)
-    .call((err, res) => {
-      if (!err) {
-        console.log(res);
-        return res;
-      } else {
-        console.log(err);
-      }
-    });
+
+  getStatus = async (citizenid) => {
+    try {
+      var registrarProvider = RegistrarWeb3Provider(privateKey);
+      var addressData = await registrarProvider.vaccination.methods
+        .getVaccine(citizenid)
+        .call((err, res) => {
+          if (!err) {
+            console.log(res);
+            return res;
+          } else {
+            console.log(err);
+          }
+        });
+        return addressData
+    } catch (error) {
+      return "" 
+    }
+  }
+  var data = await getStatus(citizenid);
   res.json({
-    result: addressData,
+    result: data,
   });
 });
 
