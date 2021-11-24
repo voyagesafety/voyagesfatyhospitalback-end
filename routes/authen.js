@@ -4,7 +4,7 @@ const medpersonel = require("../models/medicalpersonel.js");
 const constants = require("../constant");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-// const checkAuthen = require("./middleware/authentication");
+const checkAuthen = require("./../middleware/authentication");
 // const Cryptr = require('cryptr');
 // const cryptr = new Cryptr('voyageSafetySecretKey');
 
@@ -33,5 +33,25 @@ router.post("/Login", async (req, res) => {
       res.json({ result: constants.kResultNok, message: "Incorrect username" });
     }
   });
+
+  router.get("/info", checkAuthen, (req, res) => {
+  const { userData } = req;
+  if (Object.entries(userData).length !== 0) {
+    medpersonel
+      .findOne({ where: { MedId: userData.result.MedId } })
+      .then((result) => {
+        res.json({ result, error: {} });
+      })
+      .catch((err) => {
+        res.json({
+          result: {},
+          error: { status: 404, message: "Not Found" },
+        });
+      });
+  } else {
+    console.log(error);
+    res.json({ result: {}, error: { status: 404, message: "Not Found" } });
+  }
+});
 
 module.exports = router;

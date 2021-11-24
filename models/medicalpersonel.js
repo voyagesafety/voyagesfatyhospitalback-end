@@ -15,6 +15,9 @@ const medpersonel = sequelize.define(
         MedPassword: {
           type: Sequelize.STRING,
         },
+        hospital: {
+          type: Sequelize.STRING,
+        }
       },
       {
         sequelize,
