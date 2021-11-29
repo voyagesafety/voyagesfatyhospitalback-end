@@ -113,45 +113,46 @@ router.post("/person/addVaccine", async (req, res)=>{
 
 router.post("/vaccine/:citizenid", async (req, res) => {
   const { citizenid } = req.params;
-  getStatus = async (citizenid) => {
-    try {
-      var registrarProvider = RegistrarWeb3Provider(privateKey);
-      var addressData = await registrarProvider.vaccination.methods
-        .getVaccine(citizenid)
-        .call((err, res) => {
-          if (!err) {
-            console.log(res);
-            return res;
-          } else {
-            console.log(err);
-          }
-        });
-        return addressData
-    } catch (error) {
-      return "" 
-    }
-  }
-  var data = await getStatus(citizenid);
-  res.json({
-    result: data,
-  //   "result": {
-  //     "0": true,
-  //     "1": "0",
-  //     "2": "",
-  //     "3": "",
-  //     "4": "",
-  //     "5": "",
-  //     "6": "",
-  //     "7": "",
-  //     "haveVaccine": true,
-  //     "countVaccine": "0",
-  //     "vaccineName1": "Astra",
-  //     "dateGetVaccine1": "2021-11-29",
-  //     "hospitalName1": "โรงพยาบาลตากสิน",
-  //     "vaccineName2": "Astra",
-  //     "dateGetVaccine2": "2021-11-29",
-  //     "hospitalName2": "โรงพยาบาลตากสิน"
+console.log(citizenid)
+  // getStatus = async (citizenid) => {
+  //   try {
+  //     var registrarProvider = RegistrarWeb3Provider(privateKey);
+  //     var addressData = await registrarProvider.vaccination.methods
+  //       .getVaccine(citizenid)
+  //       .call((err, res) => {
+  //         if (!err) {
+  //           console.log(res);
+  //           return res;
+  //         } else {
+  //           console.log(err);
+  //         }
+  //       });
+  //       return addressData
+  //   } catch (error) {
+  //     return "" 
+  //   }
   // }
+  // var data = await getStatus(citizenid);
+  res.json({
+    //result: data,
+    "result": {
+      "0": true,
+      "1": "0",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "haveVaccine": true,
+      "countVaccine": "0",
+      "vaccineName1": "Astra",
+      "dateGetVaccine1": "2021-11-29",
+      "hospitalName1": "โรงพยาบาลตากสิน",
+      "vaccineName2": "Astra",
+      "dateGetVaccine2": "2021-11-29",
+      "hospitalName2": "โรงพยาบาลตากสิน"
+  }
   });
 });
 
