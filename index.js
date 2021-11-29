@@ -8,8 +8,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const corsOptions = {
-   origin: 'https://voyagesafetybackend.ninja',
-   credentials: true,
+   origin: ['https://voyagesafetybackend.ninja','https://voyage-safety-frontend.herokuapp.com']
 }
 app.use(cors(corsOptions));
 
