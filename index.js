@@ -6,7 +6,12 @@ const appPort = process.env.PORT || 4000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+
+const corsOptions = {
+   origin: 'https://voyagesafetybackend.ninja',
+   credentials: true,
+}
+app.use(cors(corsOptions));
 
 app.get('/', (req, res, next) => {
    res.send('Hello! Welcome to Application!');
