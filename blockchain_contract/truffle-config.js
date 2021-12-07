@@ -22,8 +22,8 @@
 // const infuraKey = "fj4jll3k.....";
 //
 // const fs = require('fs');
- const mnemonic = 'verb dentist ranch lounge virtual code scrap fruit risk exchange fame divide';
-
+//  const mnemonic = 'verb dentist ranch lounge virtual code scrap fruit risk exchange fame divide';
+const constants = require('./../constant')
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -48,7 +48,7 @@ module.exports = {
     //  network_id: "*",       // Any network (default: none)
     // },
     rinkeby: {
-      provider: () => new HDWalletProvider(mnemonic, `wss://rinkeby.infura.io/ws/v3/ae0c4db814424f40a171abaad255481c`),
+      provider: () => new HDWalletProvider(constants.mnemonic, constants.infuraNode),
       network_id: "4",
       networkCheckTimeout: 1000000,
       timeoutBlocks: 200,

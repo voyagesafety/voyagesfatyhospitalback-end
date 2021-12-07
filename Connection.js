@@ -1,7 +1,8 @@
 const Web3 = require('web3');
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const infuraNode = "wss://rinkeby.infura.io/ws/v3/ae0c4db814424f40a171abaad255481c";
-const centralMnemonic = "verb dentist ranch lounge virtual code scrap fruit risk exchange fame divide";
+const constants = require('./constant');
+const infuraNode = constants.infuraNode;
+const centralMnemonic = constants.mnemonic;
 const ABI = require("./blockchain_contract/build/contracts/Vacination.json")
 
 const HRWeb3Provider = () => {
