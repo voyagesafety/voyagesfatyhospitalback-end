@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(function (req, res, next) {
 
-   var allowedDomains = ['https://voyagesafetybackend.ninja','https://voyage-safety-frontend.herokuapp.com'];
+   var allowedDomains = ['https://voyagesafetybackend.ninja','https://voyage-safety-frontend.herokuapp.com','https://voyage-hospital-frontend.herokuapp.com'];
    var origin = req.headers.origin;
    if(allowedDomains.indexOf(origin) > -1){
      res.setHeader('Access-Control-Allow-Origin', origin);
