@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //    origin: ['https://voyagesafetybackend.ninja','https://voyage-safety-frontend.herokuapp.com']
 // }
 // app.use(cors(corsOptions));
+app.use(cors);
 
 app.use(function (req, res, next) {
 
